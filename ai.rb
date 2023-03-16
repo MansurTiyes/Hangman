@@ -1,6 +1,6 @@
 class AI
     def initialize
-        @secret_word = generate_word()
+        @secret_word = words_file_parse().sample
         @correct_letters = Array.new(secret_word.length).map { |element| element = "_"}
     end
 
@@ -21,9 +21,15 @@ class AI
     end
 
     private
-    def generate_word()
-        words = ["red","green","yellow","blue"]
-        words.sample
+
+    def words_file_parse()
+        words_selected = []
+        File.open("google-10000-english-no-swears.txt","r").readlines.each do |line|
+            if line.length>=5 && line.length<=12
+                words_selected.push(line.chomp)
+            end
+        end
+        return words_selected
     end
 end
 
