@@ -50,6 +50,10 @@ module Display
             |
       =========''']
 
+    def draw_hangman(turn_number)
+        puts HANGMANPICS[turn_number-1]
+    end
+
     def display_rules()
         puts "Welcome to Hangman game!"
         puts "1. You must guess letters to uncover the hidden word, one letter at a time."
