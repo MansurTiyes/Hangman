@@ -65,7 +65,7 @@ module Display
     end
 
     def please_enter_your_guess()
-        puts "Please input a letter to guess:"
+        puts "Please input a letter to guess or type in 'save' to save existing game or 'load' if you want to load in existing saved:"
     end
 
     def invalid_input()

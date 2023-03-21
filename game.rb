@@ -16,18 +16,17 @@ class Game
     def game()
         display_rules()
         until player.incorrect_letters.length == 7 || player.won == true
-            options()
-            entered_input = gets.chomp
-            if entered_input=="1"
-                normal_game_round()
-            elsif entered_input=="2"
-                saving_your_game(entered_input)
+            incorrect_letters_guessed(player.incorrect_letters.join(", "))
+            please_enter_your_guess()
+            input = gets.chomp.downcase
+            if input=="save"
+                saving_your_game()
                 return
-            elsif entered_input=="3"
+            elsif input=="load"
                 load_game()
-                normal_game_round()
+                next
             else
-                puts "Please enter existing option"
+                normal_game_round(input)
             end
         end
 
@@ -61,10 +60,7 @@ class Game
         return array
     end
 
-    def normal_game_round()
-        incorrect_letters_guessed(player.incorrect_letters.join(", "))
-        please_enter_your_guess()
-        input = gets.chomp.downcase
+    def normal_game_round(input)
         if input.length>1 || @@letters.include?(input) == false
             invalid_input()
             return
@@ -85,10 +81,10 @@ class Game
         end
     end
 
-    def saving_your_game(entered_input)
+    def saving_your_game()
         save_file_name()
         entered_name = gets.chomp
-        if entered_input.include?(" ") || entered_input.include?(".")
+        if entered_name.include?(" ") || entered_name.include?(".")
             puts "Please enter possible name with no spaces or full stops"
             return
         end
