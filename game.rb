@@ -16,6 +16,7 @@ class Game
     def game()
         display_rules()
         until player.incorrect_letters.length == 7 || player.won == true
+            $/="\n"
             incorrect_letters_guessed(player.incorrect_letters.join(", "))
             please_enter_your_guess()
             input = gets.chomp.downcase
@@ -24,7 +25,6 @@ class Game
                 return
             elsif input=="load"
                 load_game()
-                next
             else
                 normal_game_round(input)
             end
