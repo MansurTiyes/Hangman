@@ -96,5 +96,23 @@ module Display
     def thanks_message()
         puts "Thanks for playing Hangman! Come back soon!"
     end
+
+    def options()
+        puts "You have following options: "
+        puts "Enter 1 if you want to continue playing"
+        puts "Enter 2 if you want to save and exit"
+        puts "Enter 3 if you want to continue existing saved game file"
+    end
+
+    def save_file_name()
+        puts "Please enter the name of your savefile (no spaces): "
+    end
+
+    def saved_files()
+        puts "Here is the list of available saved files:"
+        Dir.glob("saved_games/*").each_with_index do |fname, index|
+            puts "#{index+1} : #{fname[12,50]}"
+        end
+    end
 end
 
