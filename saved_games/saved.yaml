@@ -1,0 +1,22 @@
+--- !ruby/object:Player
+guess: a
+incorrect_letters:
+- a
+- i
+- u
+- "y"
+- a
+- a
+won: false
+
+--- !ruby/object:AI
+secret_word: reporter
+correct_letters:
+- r
+- e
+- _
+- o
+- r
+- _
+- e
+- r

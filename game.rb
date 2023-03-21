@@ -22,18 +22,10 @@ class Game
                 normal_game_round()
             elsif entered_input=="2"
                 saving_your_game(entered_input)
-                break
+                return
             elsif entered_input=="3"
-                saved_files()
-                saved_games = Dir.glob("saved_games/*")
-                input_on_saved = gets.chomp.to_i
-                if input_on_saved<1 || input_on_saved>saved_games.length
-                    puts "Please enter possible option"
-                    next
-                end
-                array = unserializing_saved_games(saved_games[input_on_saved-1])
-                @player = array[0]
-                @ai = array[1]
+                load_game()
+                normal_game_round()
             else
                 puts "Please enter existing option"
             end
@@ -103,6 +95,20 @@ class Game
         save_game(entered_name)
         puts "Succesfully saved the file"
         thanks_message()
+    end
+
+    def load_game()
+        saved_files()
+        saved_games = Dir.glob("saved_games/*")
+        input_on_saved = gets.chomp.to_i
+        if input_on_saved<1 || input_on_saved>saved_games.length
+            puts "Please enter possible option"
+            return
+        end
+        array = unserializing_saved_games(saved_games[input_on_saved-1])
+        @player = array[0]
+        player.guess = ""
+        @ai = array[1]
     end
 end
 
